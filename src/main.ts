@@ -1,12 +1,10 @@
-// Complexity: O(n log n)
+// Complexity: O(n)
 const anagram = (str1: string, str2: string): boolean => {
   // Not the same length, not an anagram!
   if (str1.length !== str2.length) return false;
 
   // Sort the strings and compare them
-  (str1 = str1.split('').sort().join('')),
-    (str2 = str2.split('').sort().join(''));
-  if (str1 !== str2) return false;
+  if ([...str1].sort().join('') !== [...str2].sort().join('')) return false;
 
   // If we get here, they're anagrams
   return true;
