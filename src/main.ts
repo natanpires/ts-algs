@@ -1,10 +1,22 @@
-// Complexity: O(n)
+// Complexity: O(n + k)
 const anagram = (str1: string, str2: string): boolean => {
   // Not the same length, not an anagram!
   if (str1.length !== str2.length) return false;
+  // Same string, anagram!
+  if (str1 === str2) return true;
 
-  // Sort the strings and compare them
-  if ([...str1].sort().join('') !== [...str2].sort().join('')) return false;
+  // Create a memo to store the quantity of each char (DP)
+  const memo: Record<string, number> = {};
+
+  // Iterate over the first string and store the quantity of each char
+  for (const char of str1.toLowerCase())
+    !memo[char] ? (memo[char] = 1) : memo[char]++;
+
+  // Iterate over the second string and check if the char is in the memo
+  for (const char of str2.toLowerCase()) {
+    if (!memo[char]) return false;
+    memo[char]--;
+  }
 
   // If we get here, they're anagrams
   return true;

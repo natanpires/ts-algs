@@ -58,7 +58,7 @@ describe('Beeramid', () => {
 
 describe('Alternate sort', () => {
   it('Should be different', () => {
-    const randoms = Array.from({ length: Math.random() * 10 }, () =>
+    const randoms = Array.from({ length: 100 }, () =>
       Array.from({ length: Math.random() * 10 }, () =>
         Math.floor(Math.random() * 10),
       ),
